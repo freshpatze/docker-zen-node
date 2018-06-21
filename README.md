@@ -96,6 +96,14 @@ You may check the latest block status with the following command:
 docker exec zen-node gosu user zen-cli getinfo
 ```
 
+## Update
+
+```
+cd docker-zen-node/
+git pull
+./update.sh
+```
+
 ## Adding new nodes
 
 If you are creating multiple nodes, you may seed the initial blockchain from one of your running nodes with the following command:

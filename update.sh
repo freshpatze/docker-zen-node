@@ -8,10 +8,9 @@ print_status() {
     echo
 }
 
-if [ $# -ne 0 ]; then
-    echo "Execution format ./update.sh"
-    exit
-fi
+# Populating Cache
+print_status "Populating apt-get cache..."
+apt-get update
 
 print_status "Updating zend service..."
 cat <<EOF > /etc/systemd/system/zen-node.service

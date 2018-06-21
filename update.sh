@@ -51,10 +51,6 @@ ExecStart=/usr/bin/docker run --rm --net=host -v /mnt/zen:/mnt/zen --name zen-se
 WantedBy=multi-user.target
 EOF
 
-print_status "Removing old/unused docker images ..."
-  docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
-
-
 print_status "Enabling and starting container services..."
 systemctl daemon-reload
 systemctl enable zen-node
@@ -63,6 +59,8 @@ systemctl restart zen-node
 systemctl enable zen-secnodetracker
 systemctl restart zen-secnodetracker
 
+print_status "Removing old/unused docker images ..."
+  docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 
 print_status "Waiting for node to fetch params ..."
 until docker exec -it zen-node /usr/local/bin/gosu user zen-cli getinfo

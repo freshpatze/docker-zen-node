@@ -22,4 +22,5 @@ chown -R node:node /mnt/zen/secnode /mnt/zcash-params /home/node/nodetracker
 chmod g+rw /mnt/zen/secnode /home/node/nodetracker
 
 cd /home/node/nodetracker
+gosu node node setup.js
 gosu node node app.js

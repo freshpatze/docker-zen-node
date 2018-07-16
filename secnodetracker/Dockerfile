@@ -20,7 +20,7 @@ RUN latestBaseurl="$(curl -s https://api.github.com/repos/tianon/gosu/releases |
 WORKDIR /home/node/
 
 RUN cd /home/node/ \
-    && git clone https://github.com/ZencashOfficial/nodetracker.git \
+    && git clone https://github.com/ZencashOfficial/nodetracker.git nodetracker \
     && cd nodetracker \
     && npm install
 

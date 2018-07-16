@@ -1,5 +1,5 @@
 [Unit]
-Description=Zen secnodetracker Container
+Description=Zen Nodetracker Container
 After=docker.service
 Requires=docker.service
 
@@ -9,9 +9,9 @@ Restart=always
 ExecStartPre=-/usr/bin/docker stop %i
 ExecStartPre=-/usr/bin/docker rm  %i
 # Always pull the latest docker image
-ExecStartPre=/usr/bin/docker pull whenlambomoon/secnodetracker:latest
+ExecStartPre=/usr/bin/docker pull freshpatze/nodetracker:latest
 ExecStart=/usr/bin/docker run --rm \
                               -v /mnt/zen:/mnt/zen \
-                              --name secnode whenlambomoon/secnodetracker
+                              --name secnode freshpatze/nodetracker
 [Install]
 WantedBy=multi-user.target

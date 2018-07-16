@@ -9,7 +9,7 @@ Restart=always
 ExecStartPre=-/usr/bin/docker stop %i
 ExecStartPre=-/usr/bin/docker rm  %i
 # Always pull the latest docker image
-ExecStartPre=/usr/bin/docker pull whenlambomoon/zend:latest
+ExecStartPre=/usr/bin/docker pull freshpatze/zend:latest
 ExecStart=/usr/bin/docker run --rm \
                               -p 9033:9033 \
                               -p 18231:18231 \

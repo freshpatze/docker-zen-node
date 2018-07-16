@@ -31,22 +31,22 @@ ExecStart=/usr/bin/docker run --rm --net=host -p 9033:9033 -p 18231:18231 -v /mn
 WantedBy=multi-user.target
 EOF
 
-print_status "Updating secnodetracker service..."
-cat <<EOF > /etc/systemd/system/zen-secnodetracker.service
+print_status "Updating nodetracker service..."
+cat <<EOF > /etc/systemd/system/zen-nodetracker.service
 [Unit]
-Description=Zen Secnodetracker Container
+Description=Zen Nodetracker Container
 After=docker.service
 Requires=docker.service
 
 [Service]
 TimeoutStartSec=10m
 Restart=always
-ExecStartPre=-/usr/bin/docker stop zen-secnodetracker
-ExecStartPre=-/usr/bin/docker rm  zen-secnodetracker
+ExecStartPre=-/usr/bin/docker stop zen-nodetracker
+ExecStartPre=-/usr/bin/docker rm  zen-nodetracker
 # Always pull the latest docker image
 ExecStartPre=/usr/bin/docker pull whenlambomoon/secnodetracker:latest
-#ExecStart=/usr/bin/docker run --init --rm --net=host -v /mnt/zen:/mnt/zen --name zen-secnodetracker whenlambomoon/secnodetracker:latest
-ExecStart=/usr/bin/docker run --rm --net=host -v /mnt/zen:/mnt/zen --name zen-secnodetracker whenlambomoon/secnodetracker:latest
+#ExecStart=/usr/bin/docker run --init --rm --net=host -v /mnt/zen:/mnt/zen --name zen-nodetracker whenlambomoon/secnodetracker:latest
+ExecStart=/usr/bin/docker run --rm --net=host -v /mnt/zen:/mnt/zen --name zen-nodetracker whenlambomoon/secnodetracker:latest
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -56,8 +56,8 @@ systemctl daemon-reload
 systemctl enable zen-node
 systemctl restart zen-node
 
-systemctl enable zen-secnodetracker
-systemctl restart zen-secnodetracker
+systemctl enable zen-nodetracker
+systemctl restart zen-nodetracker
 
 print_status "Removing old/unused docker images ..."
   docker rmi $(docker images --filter "dangling=true" -q --no-trunc)

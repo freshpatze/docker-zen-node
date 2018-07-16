@@ -44,7 +44,7 @@ Restart=always
 ExecStartPre=-/usr/bin/docker stop zen-secnodetracker
 ExecStartPre=-/usr/bin/docker rm  zen-secnodetracker
 # Always pull the latest docker image
-ExecStartPre=/usr/bin/docker pull freshpatze/nodetracker:latest:latest
+ExecStartPre=/usr/bin/docker pull freshpatze/nodetracker:latest
 #ExecStart=/usr/bin/docker run --init --rm --net=host -v /mnt/zen:/mnt/zen --name zen-secnodetracker freshpatze/nodetracker:latest
 ExecStart=/usr/bin/docker run --rm --net=host -v /mnt/zen:/mnt/zen --name zen-secnodetracker freshpatze/nodetracker:latest
 [Install]
